@@ -5,10 +5,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "start": "react-scripts start",
-  "build": "react-scripts build",
-  "test": "react-scripts test"
-},
+    "dev": "vite",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test"
+  },
   "dependencies": {
     "bootstrap": "^5.3.8",
     "framer-motion": "^12.23.12",
