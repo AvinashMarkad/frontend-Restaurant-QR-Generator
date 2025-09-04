@@ -1,4 +1,3 @@
-# Workflow to build and deploy a React app to GitHub Pages
 name: Deploy React App to GitHub Pages
 
 on:
@@ -21,7 +20,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: my-app   # 👈 Run all npm commands inside my-app
+        working-directory: my-app
 
     steps:
       - name: Checkout code
@@ -32,13 +31,20 @@ jobs:
         with:
           node-version: 18
           cache: npm
-          cache-dependency-path: my-app/package-lock.json   # 👈 point to lock file
+          cache-dependency-path: my-app/package-lock.json
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build React app
-        run: npm run build
+        run: |
+          echo "=== Running npm run build ==="
+          npm run build || { echo "❌ Build failed"; exit 1; }
+
+      - name: Check build folder
+        run: |
+          echo "=== Checking build folder ==="
+          ls -l build || { echo "❌ No build folder found"; exit 1; }
 
       - name: Upload production-ready build files
         uses: actions/upload-pages-artifact@v3
