@@ -1,6 +1,7 @@
 {
   "name": "my-app",
   "private": true,
+  "homepage":"https://github.com/AvinashMarkad/frontend-Restaurant-QR-Generator",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
