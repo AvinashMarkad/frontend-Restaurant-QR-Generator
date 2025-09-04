@@ -19,6 +19,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: my-app   # 👈 Run all npm commands inside my-app
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -28,16 +32,13 @@ jobs:
         with:
           node-version: 18
           cache: npm
+          cache-dependency-path: my-app/package-lock.json   # 👈 point to lock file
 
       - name: Install dependencies
-        run: |
-          cd my-app
-          npm install
+        run: npm install
 
       - name: Build React app
-        run: |
-          cd my-app
-          npm run build
+        run: npm run build
 
       - name: Upload production-ready build files
         uses: actions/upload-pages-artifact@v3
